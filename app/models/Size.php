@@ -1,14 +1,36 @@
 <?php
 
-class Size extends \Eloquent {
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableInterface;
+use LaravelBook\Ardent\Ardent;
+
+class Size extends Ardent {
+	/**
+	 * The database table used by the model.
+	 *
+	 * @var string
+	 */
+	protected $table = 'size';
 
 	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
+		'size'   =>    'required|between:4,16';
 	];
 
-	// Don't forget to fill this array
-	protected $fillable = [];
+	/**
+	 * Prevents mass-assignement. The variables supplied can't be mass-assigned
+	 * @var array
+	 */
+	protected $guarded = ['id'];
 
+	/**
+	 * Prevents laravel from freaking out because schema doesn't have created at + upated at.
+	 */
+	protected $timestamps = false;
+
+	public function product()
+	{
+		return $this-belongsToMany('Product');
+	}
 
 }

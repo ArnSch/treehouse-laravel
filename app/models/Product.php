@@ -13,11 +13,14 @@ class Product extends Ardent {
 
 	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
+		'name'       =>    'required|between:4,64',
+		'img_link'   =>    'required|url',
+		'price'      =>    'required|numeric',
+		'paypal_num' =>    'required|alpha_num'
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = ['name','img_link','price','paypal_num'];
 
 	public function size()
 	{

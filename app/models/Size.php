@@ -15,6 +15,7 @@ class Size extends Ardent {
 	// Add your validation rules here
 	public static $rules = [
 		'size'   =>    'required|between:4,16';
+		'order'  =>    'required|unique:sizes|digits_between:1,100|integer';
 	];
 
 	/**

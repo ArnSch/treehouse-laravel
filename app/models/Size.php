@@ -10,13 +10,13 @@ class Size extends Ardent {
 	 *
 	 * @var string
 	 */
-	protected $table = 'size';
+	protected $table = 'sizes';
 
-	// Add your validation rules here
-	public static $rules = [
-		'size'   =>    'required|between:4,16';
-		'order'  =>    'required|unique:sizes|digits_between:1,100|integer';
-	];
+	// // Add your validation rules here
+	// public static $rules = [
+	// 	'size'   =>    'required|between:4,16';
+	// 	'order'  =>    'required|unique:sizes|digits_between:1,100|integer';
+	// ];
 
 	/**
 	 * Prevents mass-assignement. The variables supplied can't be mass-assigned
@@ -27,7 +27,7 @@ class Size extends Ardent {
 	/**
 	 * Prevents laravel from freaking out because schema doesn't have created at + upated at.
 	 */
-	protected $timestamps = false;
+	public $timestamps = false;
 
 	public function product()
 	{

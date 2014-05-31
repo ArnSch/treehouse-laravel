@@ -11,7 +11,7 @@ class ProductsController extends \BaseController {
 	{
 		$products = Product::all();
 
-		return View::make('products.index', compact('products'));
+		echo count($products);
 	}
 
 	/**
@@ -46,25 +46,26 @@ class ProductsController extends \BaseController {
 	/**
 	 * Display the specified product.
 	 *
-	 * @param  int  $id
+	 * @param  int  $sku
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($sku)
 	{
-		$product = Product::findOrFail($id);
+		$product = Product::findOrFail($sku);
 
-		return View::make('products.show', compact('product'));
+		//return View::make('products.show', compact('product'));
+		echo $product->sku;
 	}
 
 	/**
 	 * Show the form for editing the specified product.
 	 *
-	 * @param  int  $id
+	 * @param  int  $sku
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($sku)
 	{
-		$product = Product::find($id);
+		$product = Product::find($sku);
 
 		return View::make('products.edit', compact('product'));
 	}
@@ -72,12 +73,12 @@ class ProductsController extends \BaseController {
 	/**
 	 * Update the specified product in storage.
 	 *
-	 * @param  int  $id
+	 * @param  int  $sku
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($sku)
 	{
-		$product = Product::findOrFail($id);
+		$product = Product::findOrFail($sku);
 
 		$validator = Validator::make($data = Input::all(), Product::$rules);
 
@@ -94,12 +95,12 @@ class ProductsController extends \BaseController {
 	/**
 	 * Remove the specified product from storage.
 	 *
-	 * @param  int  $id
+	 * @param  int  $sku
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($sku)
 	{
-		Product::destroy($id);
+		Product::destroy($sku);
 
 		return Redirect::route('products.index');
 	}

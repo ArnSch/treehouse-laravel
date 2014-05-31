@@ -1,6 +1,6 @@
 <?php
 
-class HomeController extends BaseController {
+class SessionController extends BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -15,12 +15,13 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function index()
+	public function login()
 	{
-		$recent_products = Product::orderBy('created_at','desc')->take(4)->get();
-
-
-		return View::make('shop.productCard')->with('recent_products', $recent_products);
+		echo 'login';
 	}
 
+	public function logout()
+	{
+		echo 'logout';
+	}
 }

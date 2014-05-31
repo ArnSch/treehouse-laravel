@@ -12,12 +12,12 @@ class Product extends Ardent {
 	protected $primaryKey = 'sku';
 
 	// Add your validation rules here
-	public static $rules = [
-		'name'       =>    'required|between:4,64',
-		'img_link'   =>    'required|url',
-		'price'      =>    'required|numeric',
-		'paypal_num' =>    'required|alpha_num'
-	];
+	// public static $rules = [
+	// 	'name'       =>    'required|between:4,64',
+	// 	'img_link'   =>    'required|url',
+	// 	'price'      =>    'required|numeric',
+	// 	'paypal_num' =>    'required|alpha_num'
+	// ];
 
 	// Don't forget to fill this array
 	protected $fillable = ['name','img_link','price','paypal_num'];

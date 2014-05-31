@@ -5,9 +5,9 @@
 
             <div class="wrapper">
 
-                <img class="hero" src="<?php echo BASE_URL; ?>img/mike-the-frog.png" alt="Mike the Frog says:">
+                <!-- <img class="hero" src="img/mike-the-frog.png" alt="Mike the Frog says:"> -->
                 <div class="button">
-                    <a href="<?php echo BASE_URL; ?>shirts.php">
+                    <a href="/">
                         <h2>Hey, I&rsquo;m Mike!</h2>
                         <p>Check Out My Shirts</p>
                     </a>
@@ -22,13 +22,7 @@
 
                 <h2>Mike&rsquo;s Latest Shirts</h2>
 
-                <ul class="products">
-                    <?php
-                        foreach(array_reverse($recent) as $product) {
-                            include(ROOT_PATH . "inc/partial-product-list-view.html.php");
-                        }
-                    ?>
-                </ul>
+                <ul class="products">@yield('product_card')</ul>
 
             </div>
 

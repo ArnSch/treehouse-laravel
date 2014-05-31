@@ -732,9 +732,14 @@ form input[type="submit"] {
 .pagination span {
     padding: 5px 20px;
     border: 1px solid #e3e1e0;
-    display: inline-block;    
+    display: inline-block;
     text-decoration: none;
     color: #676767;
+}
+div.pagination li{
+    display: inline-block;
+    list-style: none;
+
 }
 .pagination span {background: #CCC; border-color: #999; color: #444;}
 .pagination a:hover {background: #f0eeed;}

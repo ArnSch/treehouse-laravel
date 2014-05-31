@@ -22,7 +22,11 @@
 
                 <h2>Mike&rsquo;s Latest Shirts</h2>
 
-                <ul class="products">@yield('product_card')</ul>
+                <ul class="products">
+                    @foreach ( $recent_products as $product)
+                        @include('shop.include.productCard')
+                    @endforeach
+                </ul>
 
             </div>
 

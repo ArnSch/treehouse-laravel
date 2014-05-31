@@ -2,6 +2,10 @@
 
 class ProductsController extends \BaseController {
 
+	function __construct() {
+        $this->beforeFilter('admin', array('except' => array('index', 'show', 'buy')));
+    }
+
 	/**
 	 * Display a listing of products
 	 *
@@ -9,9 +13,10 @@ class ProductsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$products = Product::all();
+		$products = Product::paginate(8);
 
-		echo count($products);
+
+		return View::make('shop.products.products', compact('products'));
 	}
 
 	/**
@@ -51,10 +56,9 @@ class ProductsController extends \BaseController {
 	 */
 	public function show($sku)
 	{
-		$product = Product::findOrFail($sku);
+		$product = Product::with('size')->findOrFail($sku);
 
-		//return View::make('products.show', compact('product'));
-		echo $product->sku;
+		return View::make('shop.products.product', compact('product'));
 	}
 
 	/**

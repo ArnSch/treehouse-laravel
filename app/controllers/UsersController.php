@@ -53,7 +53,7 @@ class UsersController extends \BaseController {
 	{
 		$user = User::findOrFail($id);
 
-		return View::make('users.show', compact('user'));
+		echo $user;
 	}
 
 	/**

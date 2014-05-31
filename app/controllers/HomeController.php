@@ -20,7 +20,7 @@ class HomeController extends BaseController {
 		$recent_products = Product::orderBy('created_at','desc')->take(4)->get();
 
 
-		return View::make('shop.productCard')->with('recent_products', $recent_products);
+		return View::make('shop.home.homepage', compact('recent_products'));
 	}
 
 }

@@ -7,17 +7,15 @@
 
 				<h1>Mike&rsquo;s Full Catalog of Shirts</h1>
 
-				<?php include(ROOT_PATH . "inc/partial-list-navigation.html.php"); ?>
+				{{$products->links();}}
 
 				<ul class="products">
-					<?php
-						foreach($products as $product) {
-							include(ROOT_PATH . "inc/partial-product-list-view.html.php");
-						}
-					?>
+					@foreach ( $products as $product)
+                        @include('shop.include.productCard')
+                    @endforeach
 				</ul>
 
-				<?php include(ROOT_PATH . "inc/partial-list-navigation.html.php"); ?>
+				{{$products->links();}}
 
 			</div>
 

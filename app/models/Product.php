@@ -24,7 +24,7 @@ class Product extends Ardent {
 
 	public function size()
 	{
-		return $this-belongsToMany('Size');
+		return $this->belongsToMany('Size');
 	}
 
 	public function user()

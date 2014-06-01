@@ -69,3 +69,13 @@ Route::get('/users/{id}/products', array(
 	'as' => 'usersProducts',
 	'uses' => 'UsersController@products'
 	));
+
+Route::get('/contact', array(
+	'as' => 'contactForm',
+	'uses' => 'HomeController@email'
+	));
+
+Route::post('/contact', array(
+	'as' => 'contact',
+	'uses' => 'HomeController@email'
+	));

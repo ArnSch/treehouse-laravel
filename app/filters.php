@@ -49,7 +49,7 @@ Route::filter('user', function($route, $request)
     {
         return;
     }
-    elseif ( $route->parameter('users') != Auth::user()->id )
+    elseif ( Request::segment(2) != Auth::user()->id )
     {
         return Redirect::to('/users/' . Auth::user()->id );
     }

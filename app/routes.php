@@ -18,6 +18,12 @@ Route::get('/', array(
 
 Route::resource('users', 'UsersController');
 
+Route::get('/users/{id}/products', array(
+	'as' => 'usersProducts',
+	'uses' => 'UsersController@products'
+));
+
+
 Route::resource('products', 'ProductsController');
 
 
@@ -45,13 +51,11 @@ Route::post('/logout', array(
 ));
 
 Route::get('/register', array(
-	'before' => 'guest',
 	'as' => 'registerForm',
 	'uses' => 'UsersController@create'
 ));
 
 Route::post('/register', array(
-	'before' => 'guest',
 	'as' => 'register',
 	'uses' => 'UsersController@store'
 ));
@@ -94,9 +98,5 @@ Route::post('/products/{sku}/buy', array(
 
 
 
-Route::get('/users/{id}/products', array(
-	'before' => 'user',
-	'as' => 'usersProducts',
-	'uses' => 'UsersController@products'
-));
+
 

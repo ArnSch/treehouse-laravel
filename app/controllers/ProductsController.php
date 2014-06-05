@@ -4,6 +4,7 @@ class ProductsController extends \BaseController {
 
 	function __construct() {
         $this->beforeFilter('admin', array('except' => array('index', 'show', 'buy')));
+        $this->beforeFilter('auth', array('on' => 'buy') );
     }
 
 	/**
@@ -107,6 +108,25 @@ class ProductsController extends \BaseController {
 		Product::destroy($sku);
 
 		return Redirect::route('products.index');
+	}
+
+	public function buy($sku)
+	{
+		$product = Product::findOrFail($sku);
+
+		if ($product)
+		{
+			DB::table('product_user')->insert([
+					'product_id' => $sku,
+					'user_id' => Auth::user()->id,
+					'created_at' => new DateTime,
+					'updated_at' => new DateTime
+				]);
+		}
+		else
+		{
+			echo 'product not found';
+		}
 	}
 
 }

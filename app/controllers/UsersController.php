@@ -13,7 +13,9 @@ class UsersController extends \BaseController {
         							 array('index') ));
 
         $this->beforeFilter('user', array('only' =>
-        							array('show','edit','update','destroy') ));
+        							array('show','edit','update','destroy', 'products') ));
+
+        $this->beforeFilter('guest', array('on' => 'create') );
 
     }
 
@@ -124,6 +126,11 @@ class UsersController extends \BaseController {
 		User::destroy($id);
 
 		return Redirect::route('users.index');
+	}
+
+	public function products($id)
+	{
+		echo User::find($id)->product;
 	}
 
 }

@@ -13,6 +13,10 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 	 */
 	protected $table = 'users';
 
+	protected $attributes = array(
+	   'admin' => 0,
+	);
+
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
@@ -24,19 +28,20 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 	 * Prevents mass-assignement. Only the variables supplied can be mass-assigned
 	 * @var array
 	 */
-	protected $fillable  = array('email','country','address','first_name','last_name');
+	protected $fillable  = array('admin','email','password','country','address','first_name','last_name','remember_token','password_confirmation');
 
 	/**
 	 * Ardent validation rules
 	 */
-	// public static $rules = array(
-	//   'first_name'            => 'required|between:4,16',
-	//   'last_name'             => 'required|between:4,16',
-	//   'email'                 => 'required|email',
-	//   'password'              => 'required|alpha_num|min:8|confirmed',
-	//   'password_confirmation' => 'required|alpha_num|min:8',
-	//   'country'               => 'alpha_dash',
-	// );
+	public static $rules = array(
+	  'first_name'            => 'required|between:4,16',
+	  'last_name'             => 'required|between:4,16',
+	  'email'                 => 'required|email|unique:users',
+	  'password'              => 'required|alphanum|min:8',
+	  'password_confirmation' => 'required|alphanum|min:8',
+	  'country'               => 'alpha_dash',
+	  'address'               => 'required',
+	);
 	/**
 	 * Purge password confirmation
 	 */

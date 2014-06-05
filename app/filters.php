@@ -43,6 +43,17 @@ Route::filter('admin', function()
 	if (Auth::guest() || (Auth::user()->admin != 1)) { return Redirect::to('/'); };
 });
 
+Route::filter('user', function($route, $request)
+{
+    if ( Auth::user()->admin == 1 )
+    {
+        return;
+    }
+    elseif ( $route->parameter('users') != Auth::user()->id )
+    {
+        return Redirect::to('/users/' . Auth::user()->id );
+    }
+});
 
 Route::filter('auth.basic', function()
 {
@@ -62,7 +73,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+	if (Auth::check()) return Redirect::to('/users/' . Auth::user()->id);
 });
 
 /*

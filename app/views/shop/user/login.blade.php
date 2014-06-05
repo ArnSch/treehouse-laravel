@@ -21,4 +21,6 @@
 
 		<p>{{ Form::submit('Submit!') }}</p>
 	{{ Form::close() }}
+
+	<p><a href='/register'>Or register!</a></p>
 @stop

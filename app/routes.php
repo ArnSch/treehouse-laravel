@@ -20,12 +20,16 @@ Route::resource('users', 'UsersController');
 
 Route::resource('products', 'ProductsController');
 
+
+
 Route::get('/login', array(
+	'before' => 'guest',
     'as' => 'loginForm',
     'uses' => 'SessionController@login'
 ));
 
 Route::post('/login', array(
+	'before' => 'guest',
     'as' => 'login',
     'uses' => 'SessionController@login'
 ));
@@ -40,42 +44,59 @@ Route::post('/logout', array(
     'uses' => 'SessionController@logout'
 ));
 
+Route::get('/register', array(
+	'before' => 'guest',
+	'as' => 'registerForm',
+	'uses' => 'UsersController@create'
+));
+
+Route::post('/register', array(
+	'before' => 'guest',
+	'as' => 'register',
+	'uses' => 'UsersController@store'
+));
+
+
+
 Route::get('/contact', array(
 	'as' => 'contactForm',
-	'uses' => 'HomeController@contact'
-	));
+	'uses' => 'HomeController@email'
+));
 
 Route::post('/contact', array(
 	'as' => 'contact',
-	'uses' => 'HomeController@contact'
-	));
+	'uses' => 'HomeController@email'
+));
+
+
+
 
 Route::get('/admin/dashboard', array(
 	'as' => 'dashboard',
 	'uses' => 'AdminController@dashboard'
-	));
+));
+
+
+
+
 
 Route::get('/products/{sku}/buy', array(
 	'as' => 'buyForm',
 	'uses' => 'ProductsController@buy'
-	));
+));
 
 Route::post('/products/{sku}/buy', array(
 	'as' => 'buy',
 	'uses' => 'ProductsController@buy'
-	));
+));
+
+
+
+
 
 Route::get('/users/{id}/products', array(
+	'before' => 'user',
 	'as' => 'usersProducts',
 	'uses' => 'UsersController@products'
-	));
+));
 
-Route::get('/contact', array(
-	'as' => 'contactForm',
-	'uses' => 'HomeController@email'
-	));
-
-Route::post('/contact', array(
-	'as' => 'contact',
-	'uses' => 'HomeController@email'
-	));

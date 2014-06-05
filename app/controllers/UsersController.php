@@ -2,6 +2,21 @@
 
 class UsersController extends \BaseController {
 
+	public function __construct()
+    {
+        $this->beforeFilter('csrf', array('on' => 'store') );
+
+        $this->beforeFilter('auth', array('except' =>
+        							array('create', 'store') ));
+
+        $this->beforeFilter('admin', array('only' =>
+        							 array('index') ));
+
+        $this->beforeFilter('user', array('only' =>
+        							array('show','edit','update','destroy') ));
+
+    }
+
 	/**
 	 * Display a listing of users
 	 *
@@ -21,7 +36,7 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('users.create');
+		return View::make('shop.user.register');
 	}
 
 	/**
@@ -33,14 +48,21 @@ class UsersController extends \BaseController {
 	{
 		$validator = Validator::make($data = Input::all(), User::$rules);
 
+
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
-		User::create($data);
-
-		return Redirect::route('users.index');
+		$user = new User;
+		$user->email = $data['email'];
+		$user->first_name = $data['first_name'];
+		$user->last_name = $data['last_name'];
+		$user->password = Hash::make( $data['password'] );
+		$user->password_confirmation = Hash::make( $data['password'] );
+		$user->country = $data['country'];
+		$user->address = $data['address'];
+		$user->save();
 	}
 
 	/**

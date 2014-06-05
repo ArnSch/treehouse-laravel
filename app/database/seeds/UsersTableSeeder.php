@@ -20,7 +20,6 @@ class UsersTableSeeder extends Seeder {
 			'updated_at' => new DateTime,
 			'remember_token' => null
 		]);
-		
 		$faker = Faker::create();
 
 		foreach(range(1, 10) as $index)

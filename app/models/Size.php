@@ -13,10 +13,10 @@ class Size extends Ardent {
 	protected $table = 'sizes';
 
 	// // Add your validation rules here
-	// public static $rules = [
-	// 	'size'   =>    'required|between:4,16';
-	// 	'order'  =>    'required|unique:sizes|digits_between:1,100|integer';
-	// ];
+	public static $rules = [
+		'size'   =>    'required|between:4,16',
+		'order'  =>    'required|unique:sizes|digits_between:1,100|integer',
+	];
 
 	/**
 	 * Prevents mass-assignement. The variables supplied can't be mass-assigned

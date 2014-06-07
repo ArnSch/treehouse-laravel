@@ -1,6 +1,11 @@
 @extends('shop/layout')
 
 @section('content')
+@if(Auth::check())
+	@if(Auth::user()->admin == 1)
+		<button class="admin-edit">Admin Edit</button>
+	@endif
+@endif
 		<div class="section page">
 
 			<div class="wrapper">
@@ -17,9 +22,8 @@
 
 					<h1><span class="price">${{number_format((float)$product->price, 2, '.', '')}}</span> {{$product->name}}</h1>
 
-					<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-						<input type="hidden" name="cmd" value="_s-xclick">
-						<input type="hidden" name="hosted_button_id" value="<?php echo $product["paypal"]; ?>">
+					<form target="paypal" action="{{$product->sku}}/buy" method="post">
+<!-- 						<input type="hidden" name="cmd" value="_s-xclick">
 						<input type="hidden" name="item_name" value="<?php echo $product["name"]; ?>">
 						<table>
 						<tr>
@@ -35,7 +39,7 @@
 								</select>
 							</td>
 						</tr>
-						</table>
+						</table> -->
 						<input type="submit" value="Add to Cart" name="submit">
 					</form>
 

@@ -4,7 +4,6 @@ class ProductsController extends \BaseController {
 
 	function __construct() {
         $this->beforeFilter('admin', array('except' => array('index', 'show', 'buy')));
-        $this->beforeFilter('auth', array('on' => 'buy') );
     }
 
 	/**

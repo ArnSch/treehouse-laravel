@@ -26,6 +26,17 @@ Route::get('/users/{id}/products', array(
 
 Route::resource('products', 'ProductsController');
 
+Route::get('/products/{sku}/buy', array(
+	'as' => 'buyForm',
+	'uses' => 'ProductsController@buy'
+));
+
+Route::post('/products/{sku}/buy', array(
+	'before' => 'auth',
+	'as' => 'buy',
+	'uses' => 'ProductsController@buy'
+));
+
 
 
 Route::get('/login', array(
@@ -76,6 +87,7 @@ Route::post('/contact', array(
 
 
 Route::get('/admin/dashboard', array(
+	// 'before' => 'admin',
 	'as' => 'dashboard',
 	'uses' => 'AdminController@dashboard'
 ));
@@ -84,15 +96,7 @@ Route::get('/admin/dashboard', array(
 
 
 
-Route::get('/products/{sku}/buy', array(
-	'as' => 'buyForm',
-	'uses' => 'ProductsController@buy'
-));
 
-Route::post('/products/{sku}/buy', array(
-	'as' => 'buy',
-	'uses' => 'ProductsController@buy'
-));
 
 
 

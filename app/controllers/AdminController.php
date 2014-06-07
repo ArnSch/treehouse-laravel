@@ -8,79 +8,22 @@ class AdminController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function dashboard()
 	{
-		//
+		$bought = DB::table('product_user AS pu')
+								->join('users AS u', 'u.id', '=', 'pu.user_id')
+								->join('products AS p', 'p.sku', '=', 'pu.product_id')
+								->select('fulfilled', 'pu.created_at', 'email', 'country', 'address', 'first_name', 'last_name', 'sku', 'name', 'img_link', 'price', 'paypal_num')->orderBy('pu.created_at','desc')->get();
+
+		return View::make('admin.dashboard.dashboard', compact('bought'));
+
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /admin/create
-	 *
-	 * @return Response
-	 */
-	public function create()
+	public function markFulfilled($sku)
 	{
-		//
+
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /admin
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /admin/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /admin/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /admin/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /admin/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 
 }

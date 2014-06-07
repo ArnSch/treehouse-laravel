@@ -13,10 +13,6 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 	 */
 	protected $table = 'users';
 
-	protected $attributes = array(
-	   'admin' => 0,
-	);
-
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
@@ -37,8 +33,8 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 	  'first_name'            => 'required|between:4,16',
 	  'last_name'             => 'required|between:4,16',
 	  'email'                 => 'required|email|unique:users',
-	  'password'              => 'required|alphanum|min:8',
-	  'password_confirmation' => 'required|alphanum|min:8',
+	  'password'              => 'required|min:8',
+	  'password_confirmation' => 'required|min:8',
 	  'country'               => 'alpha_dash',
 	  'address'               => 'required',
 	);
@@ -49,7 +45,19 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 
 	public function product()
 	{
-		return $this->belongsToMany('Product');
+		return $this->belongsToMany('Product')->withTimestamps();
+	}
+
+	public function isAdmin()
+	{
+		if ($this->admin == 1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	public function getRememberToken()

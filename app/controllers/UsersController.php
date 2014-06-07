@@ -65,6 +65,15 @@ class UsersController extends \BaseController {
 		$user->country = $data['country'];
 		$user->address = $data['address'];
 		$user->save();
+
+		$userdata = array(
+		    'email'      => $user->email,
+		    'password'   => $data['password']
+		);
+
+		if (Auth::attempt($userdata) ){
+			return Redirect::route('users/'.Auth::user()->id);
+		};
 	}
 
 	/**
@@ -77,7 +86,12 @@ class UsersController extends \BaseController {
 	{
 		$user = User::findOrFail($id);
 
-		echo $user;
+		if ($user->isAdmin()) {
+			echo 'admin';
+		} else {
+			echo $user;
+		}
+
 	}
 
 	/**

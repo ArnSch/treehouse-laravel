@@ -19,6 +19,7 @@ class CreateProductUserTable extends Migration {
 			$table->foreign('product_id')->references('sku')->on('products')->onDelete('cascade');
 			$table->integer('user_id')->unsigned()->index();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->boolean('fulfilled')->default(false);
 			$table->timestamps();
 		});
 	}

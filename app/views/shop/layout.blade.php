@@ -2,7 +2,10 @@
 <head>
 	<title>home</title>
 	<link rel="stylesheet" href="/css/style.css" type="text/css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700" type="text/css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
 	<link rel="shortcut icon" href="favicon.ico">
 </head>
 <body>
@@ -17,8 +20,18 @@
 				<li class="shirts">{{ link_to_route('products.index', "Shirts" )}}</li>
 				<li class="contact">{{ link_to_route('contact', "Contact" )}}</li>
 				<li class="search">{{ link_to_route('products.index', "Search" )}}</li>
-				<li class="login">{{ link_to_route('login', "Login" )}}</li>
+				@if(Auth::guest())
+					<li class="login">{{ link_to_route('login', "Login" )}}</li>
+				@else
+					<li class="logout">{{ link_to_route('logout', "Logout" )}}</li>
+				@endif
 				<li class="cart"><a target="paypal" href="https://www.paypal.com/cgi-bin/webscr?cmd=_cart&amp;business=Q6NFNPFRBWR8S&amp;display=1">Shopping Cart</a></li>
+				@if(Auth::check())
+					@if(Auth::user()->admin == 1)
+						<li class="dashboard">{{ link_to_route('dashboard', "Dashboard" )}}</li>
+					@endif
+				@endif
+
 			</ul>
 
 		</div>
@@ -33,7 +46,7 @@
 
 		<div class="wrapper">
 
-			<ul>		
+			<ul>
 				<li><a href="http://twitter.com/treehouse">Twitter</a></li>
 				<li><a href="https://www.facebook.com/TeamTreehouse">Facebook</a></li>
 			</ul>
@@ -41,8 +54,9 @@
 			<p>&copy;<?php echo date('Y'); ?> Shirts 4 Mike</p>
 
 		</div>
-	
-	</div>
 
+	</div>
+	<script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="/js/main.js"></script>
 </body>
 </html>

@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration {
 			$table->string('address');
 			$table->string('first_name');
 			$table->string('last_name');
-			$table->boolean('admin')->nullable();
+			$table->boolean('admin')->nullable()->default(0);
 			$table->timestamps();
 			$table->engine = 'InnoDB';
 		});

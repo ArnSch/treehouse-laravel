@@ -93,6 +93,11 @@ Route::get('/admin/dashboard', array(
 	'uses' => 'AdminController@dashboard'
 ));
 
+Route::post('/admin/dashboard/edit', array(
+	'as' => 'markfulfilled',
+	'uses' => 'AdminController@markfulfilled'
+));
+
 
 
 

@@ -72,7 +72,7 @@ class UsersController extends \BaseController {
 		);
 
 		if (Auth::attempt($userdata) ){
-			return Redirect::route('users/'.Auth::user()->id);
+			return Redirect::route('home');
 		};
 	}
 

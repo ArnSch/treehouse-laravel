@@ -79,6 +79,7 @@ Route::get('/contact', array(
 ));
 
 Route::post('/contact', array(
+	'before' => 'csrf',
 	'as' => 'contact',
 	'uses' => 'HomeController@email'
 ));

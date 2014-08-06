@@ -111,21 +111,7 @@ class ProductsController extends \BaseController {
 
 	public function buy($sku)
 	{
-		$product = Product::findOrFail($sku);
-
-		if ($product)
-		{
-			DB::table('product_user')->insert([
-					'product_id' => $sku,
-					'user_id' => Auth::user()->id,
-					'created_at' => new DateTime,
-					'updated_at' => new DateTime
-				]);
-		}
-		else
-		{
-			echo 'product not found';
-		}
+		
 	}
 
 }

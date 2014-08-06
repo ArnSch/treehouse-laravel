@@ -29,7 +29,7 @@ class Product extends Ardent {
 
 	public function user()
 	{
-		return $this->belongsToMany('user');
+		return $this->belongsToMany('User');
 	}
 
 }
